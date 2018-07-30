@@ -8,4 +8,4 @@
 
 import Foundation
 
-var apiKey = "020a496ab1d242ccb3ec18bee8af7ca3"
+var apiKey = "API_KEY"
