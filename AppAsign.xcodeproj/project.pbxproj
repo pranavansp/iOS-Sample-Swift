@@ -18,7 +18,7 @@
 		E96C19FA20F9C9450011462A /* AppAsignUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96C19F920F9C9450011462A /* AppAsignUITests.swift */; };
 		E96C1A0C20F9D6800011462A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96C1A0B20F9D6800011462A /* ListViewController.swift */; };
 		E96C1A0E20F9D6BD0011462A /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96C1A0D20F9D6BD0011462A /* ListViewCell.swift */; };
-		E96C1A1020F9D7F70011462A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96C1A0F20F9D7F70011462A /* File.swift */; };
+		E96C1A1020F9D7F70011462A /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96C1A0F20F9D7F70011462A /* Article.swift */; };
 		E96C1A1320F9DAC90011462A /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96C1A1220F9DAC90011462A /* NetworkingService.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		E96C19FB20F9C9450011462A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E96C1A0B20F9D6800011462A /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = Controller/ListViewController.swift; sourceTree = "<group>"; };
 		E96C1A0D20F9D6BD0011462A /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
-		E96C1A0F20F9D7F70011462A /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		E96C1A0F20F9D7F70011462A /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		E96C1A1220F9DAC90011462A /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,7 +174,7 @@
 		E96C1A0820F9D62F0011462A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E96C1A0F20F9D7F70011462A /* File.swift */,
+				E96C1A0F20F9D7F70011462A /* Article.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -374,7 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E902BC4820FA1FF100572185 /* Constant.swift in Sources */,
-				E96C1A1020F9D7F70011462A /* File.swift in Sources */,
+				E96C1A1020F9D7F70011462A /* Article.swift in Sources */,
 				E96C1A0E20F9D6BD0011462A /* ListViewCell.swift in Sources */,
 				E96C19DC20F9C9450011462A /* FullViewController.swift in Sources */,
 				E96C1A1320F9DAC90011462A /* NetworkingService.swift in Sources */,
@@ -552,7 +552,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Sample.AppAsign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -568,7 +568,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Sample.AppAsign;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

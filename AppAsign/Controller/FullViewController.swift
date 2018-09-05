@@ -14,7 +14,7 @@ class FullViewController: UIViewController {
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var source: UILabel!
     
-    var article = Article()
+    var article : Article? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class FullViewController: UIViewController {
     }
     
     private func loadDetilsView(){
-        if let imageURL = self.article.urlToImage{
+        if let imageURL = self.article?.urlToImage{
             if let url = URL(string:imageURL){
                 mainImage.isHidden = false
                 mainImage.sd_setShowActivityIndicatorView(true)
@@ -33,10 +33,10 @@ class FullViewController: UIViewController {
                 mainImage.isHidden = true
             }
         }
-        self.titleValue.text = self.article.title
-        self.desc.text = self.article.desc
-        self.source.text = self.article.source.name
-        self.title = self.article.title
+        self.titleValue.text = self.article?.title
+        self.desc.text = self.article?.desc
+        self.source.text = self.article?.source?.name
+        self.title = self.article?.title
     }
 
     override func didReceiveMemoryWarning() {

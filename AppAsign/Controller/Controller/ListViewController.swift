@@ -10,6 +10,11 @@ import UIKit
 
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    enum FetchError : Error {
+        case ResponseFaild
+        case Invalid
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentControll: UISegmentedControl!
     
@@ -18,12 +23,23 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     var articles = [Article]()
+    var resp = REST()
 
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
-        fetchListFromServer()
+        
+        do{
+            try fetchListFromServer()
+        }catch FetchError.ResponseFaild{
+            print("error ResponseFaild")
+        }catch FetchError.Invalid{
+            print("error Invalid")
+        }catch{
+            print("Unknow")
+        }
+        
         // Do any additional setup after loading the view.
     }
 
@@ -33,7 +49,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     @IBAction func actionSegment(_ sender: UISegmentedControl) {
-        switch segmentControll.selectedSegmentIndex
+        /*switch segmentControll.selectedSegmentIndex
         {
         case 0:
             fetchListFromServer(country: "us", category: "business")
@@ -43,20 +59,27 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             fetchListFromServer(country: "us", category: "entertainment")
         default:
             break
-        }
+        }*/
     }
     
-    private func fetchListFromServer(country:String = "us",category:String = "business"){
+    func fetchListFromServer(country:String = "us" ) throws {
         self.showActivityIndicator(uiView: self.view)
-        NetworkingService.shared.get(url: "/top-headlines?country=\(country)&category=\(category)&apiKey=\(apiKey)"){(response,success) in
-            if success{
-                self.articles = [Article]()
-                if let articles = response["articles"] as? [[String:Any]]{
-                    for articleOne in articles{
-                        let articleObj = Article()
-                        articleObj.setValuesForKeys(articleOne)
-                        self.articles.append(articleObj)
+        
+        if country.isEmpty{ throw FetchError.Invalid }
+        
+        NetworkingService.shared.getFrom(url: "/top-headlines?country=\(country)&category=business&apiKey=\(apiKey)") { (data, success) in
+            if success {
+                do{
+                    let decoder = JSONDecoder()
+                    self.resp = try decoder.decode(REST.self, from: data)
+                    if let value = self.resp.articles{
+                        self.articles = value
                     }
+                    self.tableView.reloadData()
+                }catch let jsonErr {
+                    print("Failed to decode:", jsonErr)
+                }catch{
+                    print("Unknow")
                 }
             }else{
                 print("Faild at get")

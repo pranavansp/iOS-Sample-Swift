@@ -17,7 +17,7 @@ class NetworkingService {
     var BASE_URL = "https://newsapi.org/v2/"
     
     //MARK: - GET Common Network Request true/false
-    func get(url:String, completion: @escaping([String:Any],Bool)->Void){
+    func getFrom(url:String, completion: @escaping(Data,Bool)->Void){
         
         let fullURL = "\(BASE_URL)\(url)"
         
@@ -26,14 +26,14 @@ class NetworkingService {
                 let checkServerMsg = String.init(data: response.data!, encoding: String.Encoding.utf8)
                 var serverMessage = "0"
                 if let serverReturnMessage = checkServerMsg{
-                    //print("Server Return: \(serverReturnMessage))")
                     serverMessage = serverReturnMessage
                 }
-                if let rawData = response.result.value as? [String:Any]{
+                if let rawData = response.data{
+                    print("Server Return: \(rawData))")
                     completion(rawData,true)
                 }else{
                     print("Faild")
-                    completion(["Faild":"\(serverMessage)"],false)
+                    completion((serverMessage as AnyObject) as! Data,false)
                 }
         }
     }

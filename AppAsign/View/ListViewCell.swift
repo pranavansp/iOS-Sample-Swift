@@ -34,7 +34,7 @@ class ListViewCell: UITableViewCell {
                     listimage.isHidden = true
                 }
             }
-            if let source = article?.source.name{
+            if let source = article?.source?.name{
                 self.source.text = source
             }
             if let desc = article?.desc{
